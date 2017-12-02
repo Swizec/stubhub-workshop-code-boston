@@ -7,7 +7,7 @@ Your journey begins with
 [the starter repo](https://github.com/Swizec/stubhub-workshop-code-boston).
 
 ```
-$ git clone https://github.com/Swizec/stubhub-workshop-code-boston.git
+$ git clone https://github.com/Swizec/stubhub-workshop-code-boston-day-2.git
 $ cd stubhub-workshop-code-boston
 $ npm install
 ```
