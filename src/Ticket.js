@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addToCart } from "./actions";
+import { selectTicket } from "./actions";
 import styled from "styled-components";
 import format from "date-fns/format";
 import { connect } from "react-redux";
@@ -38,7 +38,7 @@ const TicketMeta = styled.div`
     padding: 20px;
 `;
 
-class Ticket extends Component {
+class TicketContainer extends Component {
     selectTicket = () => this.props.selectTicket({ id: this.props.info.id });
 
     render() {
@@ -58,5 +58,7 @@ class Ticket extends Component {
         );
     }
 }
+
+const Ticket = connect(state => ({}), { selectTicket })(TicketContainer);
 
 export { Ticket };

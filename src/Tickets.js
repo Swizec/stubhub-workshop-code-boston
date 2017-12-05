@@ -4,7 +4,7 @@ import styled from "styled-components";
 import matchSorter from "match-sorter";
 
 import Downshift from "downshift";
-import { fetchTickets, selectTicket } from "./actions";
+import { fetchTickets } from "./actions";
 import { Button, Input } from "./FormElements";
 
 import { Ticket } from "./Ticket";
@@ -20,18 +20,15 @@ const mapStateToProps = state => ({
     tickets: state.tickets.list
 });
 const mapDispatchToProps = {
-    fetchTickets,
-    selectTicket
+    fetchTickets
 };
 
 const Tickets = connect(mapStateToProps, mapDispatchToProps)(
-    ({ tickets, fetchTickets, selectTicket }) => (
+    ({ tickets, fetchTickets }) => (
         <div>
             <Button onClick={fetchTickets} label="More tickets" />
             <React.Fragment>
-                {tickets.map(ticket => (
-                    <Ticket info={ticket} selectTicket={selectTicket} />
-                ))}
+                {tickets.map(ticket => <Ticket info={ticket} />)}
             </React.Fragment>
         </div>
     )
