@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
 
-function tickets(state = [], action) {
+function tickets(state = { page: 0, list: [] }, action) {
     switch (action.type) {
         case "TICKETS_FETCHED":
-            return [...state, ...action.tickets.events];
+            return {
+                page: state.page + 1,
+                list: [...state.list, ...action.tickets.events]
+            };
         default:
             return state;
     }

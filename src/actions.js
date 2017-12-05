@@ -2,8 +2,9 @@ import Api from "./Api";
 
 export function fetchTickets() {
     return function(dispatch, getState) {
-        console.log("actually trying to fetch");
-        Api.events().then(tickets => {
+        const page = getState().tickets.page;
+
+        Api.events(page).then(tickets => {
             dispatch({
                 type: "TICKETS_FETCHED",
                 tickets
