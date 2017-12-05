@@ -30,6 +30,11 @@ class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ shoppingCart, checkout }) {}
+function mapStateToProps({ shoppingCart, checkout }) {
+    return {
+        items: 0,
+        purchases: 0
+    };
+}
 
 export default withRouter(connect(mapStateToProps)(AppContainer));
