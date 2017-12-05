@@ -33,7 +33,7 @@ class AppContainer extends Component {
 
 function mapStateToProps({ shoppingCart, checkout }) {
     return {
-        items: 0,
+        items: shoppingCart.length,
         purchases: 0
     };
 }

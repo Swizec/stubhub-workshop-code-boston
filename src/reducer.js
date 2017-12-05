@@ -16,7 +16,11 @@ function tickets(state = { page: 0, list: [] }, action) {
 function shoppingCart(state = [], action) {
     switch (action.type) {
         case "SELECT_TICKET":
-            return [...state, action.id];
+            if (!state.includes(action.id)) {
+                return [...state, action.id];
+            } else {
+                return state;
+            }
         default:
             return state;
     }
@@ -33,5 +37,17 @@ const rootReducer = combineReducers({
     tickets,
     shoppingCart
 });
+
+/*
+
+{
+    tickets: { 
+        page: 0,
+        list: []
+    },
+    shoppingCart: []
+}
+
+*/
 
 export default rootReducer;
