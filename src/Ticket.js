@@ -25,8 +25,10 @@ const SelectedTicketStyle = TicketStyle.extend`
     background: rgba(219, 112, 147, 0.3);
 `;
 
-const ThumbStyle = styled.div`
-    width: 250px;
+const Thumbnail = styled.img`
+    display: flex;
+    flex: 1;
+    width: 350px;
 `;
 
 const TicketMeta = styled.div`
@@ -35,3 +37,26 @@ const TicketMeta = styled.div`
     flex: 2;
     padding: 20px;
 `;
+
+class Ticket extends Component {
+    render() {
+        const {
+            info: { imageUrl, name, description, eventDateLocal }
+        } = this.props;
+
+        return (
+            <TicketStyle>
+                <Thumbnail src={imageUrl} />
+                <TicketMeta>
+                    <h2>
+                        {name} - <span>{this.state.N}</span>
+                    </h2>
+                    <p>{format(eventDateLocal, "ddd Do MMMM, hh:mma")}</p>
+                    <p>{description}</p>
+                </TicketMeta>
+            </TicketStyle>
+        );
+    }
+}
+
+export { Ticket };
