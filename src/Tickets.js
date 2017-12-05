@@ -23,13 +23,39 @@ const mapDispatchToProps = {
     fetchTickets
 };
 
+const getTickets = (value, tickets) => {
+    return value
+        ? matchSorter(tickets, value, {
+              keys: ["name", "description"]
+          })
+        : tickets;
+};
+
+const SearchableTicketList = ({ tickets, children }) => (
+    <Downshift itemToString={item => (item ? item.name : "")}>
+        {({ getInputProps, inputValue }) => (
+            <div>
+                <Input
+                    {...getInputProps({
+                        placeholder: `Search from ${tickets.length} tickets`
+                    })}
+                />
+
+                {getTickets(inputValue, tickets).map(ticket =>
+                    children(ticket)
+                )}
+            </div>
+        )}
+    </Downshift>
+);
+
 const Tickets = connect(mapStateToProps, mapDispatchToProps)(
     ({ tickets, fetchTickets }) => (
         <div>
             <Button onClick={fetchTickets} label="More tickets" />
-            <React.Fragment>
-                {tickets.map(ticket => <Ticket info={ticket} />)}
-            </React.Fragment>
+            <SearchableTicketList tickets={tickets}>
+                {ticket => <Ticket info={ticket} key={ticket.id} />}
+            </SearchableTicketList>
         </div>
     )
 );
