@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { addToCart } from "./actions";
 import styled from "styled-components";
 import format from "date-fns/format";
@@ -48,9 +48,7 @@ class Ticket extends Component {
             <TicketStyle>
                 <Thumbnail src={imageUrl} />
                 <TicketMeta>
-                    <h2>
-                        {name} - <span>{this.state.N}</span>
-                    </h2>
+                    <h2>{name}</h2>
                     <p>{format(eventDateLocal, "ddd Do MMMM, hh:mma")}</p>
                     <p>{description}</p>
                 </TicketMeta>
