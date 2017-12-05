@@ -39,20 +39,22 @@ const TicketMeta = styled.div`
 `;
 
 class Ticket extends Component {
+    selectTicket = () => this.props.selectTicket({ id: this.props.info.id });
+
     render() {
         const {
             info: { imageUrl, name, description, eventDateLocal }
         } = this.props;
 
         return (
-            <TicketStyle>
+            <SelectableTicketStyle onClick={this.selectTicket}>
                 <Thumbnail src={imageUrl} />
                 <TicketMeta>
                     <h2>{name}</h2>
                     <p>{format(eventDateLocal, "ddd Do MMMM, hh:mma")}</p>
                     <p>{description}</p>
                 </TicketMeta>
-            </TicketStyle>
+            </SelectableTicketStyle>
         );
     }
 }

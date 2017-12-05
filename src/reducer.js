@@ -12,8 +12,18 @@ function tickets(state = { page: 0, list: [] }, action) {
     }
 }
 
+function shoppingCart(state = [], action) {
+    switch (action.type) {
+        case "SELECT_TICKET":
+            return [...state, action.id];
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
-    tickets
+    tickets,
+    shoppingCart
 });
 
 export default rootReducer;

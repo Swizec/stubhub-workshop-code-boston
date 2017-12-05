@@ -12,3 +12,10 @@ export function fetchTickets() {
         });
     };
 }
+
+export function selectTicket({ id }) {
+    return {
+        type: "SELECT_TICKET",
+        id
+    };
+}
