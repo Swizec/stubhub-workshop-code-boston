@@ -24,6 +24,7 @@ class AppContainer extends Component {
                 </header>
                 <div>
                     <Route exact path="/" component={Home} />
+                    <Route path="/tickets" component={Tickets} />
                 </div>
             </div>
         );
