@@ -43,22 +43,40 @@ class TicketContainer extends Component {
 
     render() {
         const {
-            info: { imageUrl, name, description, eventDateLocal }
+            info: { imageUrl, name, description, eventDateLocal },
+            selected
         } = this.props;
 
-        return (
-            <SelectableTicketStyle onClick={this.selectTicket}>
-                <Thumbnail src={imageUrl} />
-                <TicketMeta>
-                    <h2>{name}</h2>
-                    <p>{format(eventDateLocal, "ddd Do MMMM, hh:mma")}</p>
-                    <p>{description}</p>
-                </TicketMeta>
-            </SelectableTicketStyle>
-        );
+        if (selected) {
+            return (
+                <SelectedTicketStyle onClick={this.selectTicket}>
+                    <Thumbnail src={imageUrl} />
+                    <TicketMeta>
+                        <h2>{name}</h2>
+                        <p>{format(eventDateLocal, "ddd Do MMMM, hh:mma")}</p>
+                        <p>{description}</p>
+                    </TicketMeta>
+                </SelectedTicketStyle>
+            );
+        } else {
+            return (
+                <SelectableTicketStyle onClick={this.selectTicket}>
+                    <Thumbnail src={imageUrl} />
+                    <TicketMeta>
+                        <h2>{name}</h2>
+                        <p>{format(eventDateLocal, "ddd Do MMMM, hh:mma")}</p>
+                        <p>{description}</p>
+                    </TicketMeta>
+                </SelectableTicketStyle>
+            );
+        }
     }
 }
 
-const Ticket = connect(state => ({}), { selectTicket })(TicketContainer);
+const mapStateToProps = (state, props) => ({
+    selected: isInShoppingCart(state, props.info)
+});
+
+const Ticket = connect(mapStateToProps, { selectTicket })(TicketContainer);
 
 export { Ticket };
